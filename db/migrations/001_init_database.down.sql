@@ -1,5 +1,5 @@
-drop table users;
-drop table tags;
-drop table prompts;
-drop table prompt_tags;
-drop table prompt_dependeices;
+drop table if exists users;
+drop table if exists tags;
+drop table if exists prompts;
+drop table if exists prompt_tags;
+drop table if exists prompt_dependencies;

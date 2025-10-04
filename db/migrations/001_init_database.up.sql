@@ -22,7 +22,6 @@ create table if not exists prompts(
   description VARCHAR,
   author VARCHAR,
   repository VARCHAR UNIQUE,
-  version VARCHAR,
   license VARCHAR,
   created DATETIME DEFAULT CURRENT_TIMESTAMP,
   updated DATETIME DEFAULT CURRENT_TIMESTAMP
@@ -44,8 +43,21 @@ create table if not exists prompt_dependencies(
   id INTEGER NOT NULL PRIMARY KEY,
   prompt_id INTEGER,
   dep_id INTEGER,
+  version VARCHAR,
+  semantic VARCHAR,
   created DATETIME DEFAULT CURRENT_TIMESTAMP,
   updated DATETIME DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY(prompt_id) REFERENCES prompts(id),
   FOREIGN KEY(dep_id) REFERENCES prompts(id)
 );
+
+
+create table if not exists prompt_versions(
+  id INTEGER NOT NULL PRIMARY KEY,
+  prompt_id INTEGER,
+  version VARCHAR,
+  created DATETIME DEFAULT CURRENT_TIMESTAMP,
+  updated DATETIME DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY(prompt_id) REFERENCES prompts(id)
+);
+
